@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_sample/src/provider/bottom_navigation_provider.dart';
 import 'package:flutter_provider_sample/src/provider/count_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -18,9 +19,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider(
-        create: (context) => CountProvider(),
-        child: const Home(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CountProvider>(create: (_) => CountProvider()),
+          ChangeNotifierProvider<BottomNavigationProvider>(
+              create: (_) => BottomNavigationProvider()),
+        ],
+        child: Home(),
       ),
     );
   }

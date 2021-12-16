@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class CountProvider extends ChangeNotifier {
   int _count = 0;
