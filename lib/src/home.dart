@@ -4,14 +4,23 @@ import 'package:provider/provider.dart';
 
 import 'provider/bottom_navigation_provider.dart';
 import 'ui/count_home_widget.dart';
+import 'ui/movie_list_widget.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
-  late final CountProvider _countProvider;
-  late final BottomNavigationProvider _bottomNavigationProvider;
+  late BottomNavigationProvider _bottomNavigationProvider;
 
   Widget _navigationBody() {
+    switch (_bottomNavigationProvider.currentIndex) {
+      case 0:
+        print(_bottomNavigationProvider.currentIndex);
+        return CountHomeWidget();
+      case 1:
+        print(_bottomNavigationProvider.currentIndex);
+        return const MovieListWidget();
+    }
+
     return Container();
   }
 
@@ -36,28 +45,11 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('Build home');
-    _countProvider = Provider.of<CountProvider>(context, listen: false);
-    _bottomNavigationProvider =
-        Provider.of<BottomNavigationProvider>(context, listen: false);
+
+    _bottomNavigationProvider = Provider.of<BottomNavigationProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('provider Sample'),
-      ),
-      body: const CountHomeWidget(), //_navigationBody(),
+      body: _navigationBody(),
       bottomNavigationBar: _bottomNavigationBarWidget(),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            onPressed: () => _countProvider.add(),
-            icon: const Icon(Icons.add),
-          ),
-          IconButton(
-            onPressed: () => _countProvider.remove(),
-            icon: const Icon(Icons.remove),
-          ),
-        ],
-      ),
     );
   }
 }
