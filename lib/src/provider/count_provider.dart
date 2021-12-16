@@ -5,12 +5,12 @@ class CountProvider extends ChangeNotifier {
 
   get count => _count;
 
-  add() {
+  void add() {
     _count++;
     notifyListeners();
   }
 
-  remove() {
+  void remove() {
     _count--;
     notifyListeners();
   }

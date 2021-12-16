@@ -9,9 +9,13 @@ class CountHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Build called');
     return Center(
-      child: Text(
-        Provider.of<CountProvider>(context).count.toString(),
-        style: TextStyle(fontSize: 80),
+      child: Consumer<CountProvider>(
+        builder: (context, provider, child) {
+          return Text(
+            provider.count.toString(),
+            style: const TextStyle(fontSize: 80),
+          );
+        },
       ),
     );
   }
