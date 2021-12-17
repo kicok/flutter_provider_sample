@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_sample/src/provider/count_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/bottom_navigation_provider.dart';
 import 'ui/count_home_widget.dart';
 import 'ui/movie_list_widget.dart';
 
+// ignore: must_be_immutable
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
         return CountHomeWidget();
       case 1:
         print(_bottomNavigationProvider.currentIndex);
-        return const MovieListWidget();
+        return MovieListWidget();
     }
 
     return Container();

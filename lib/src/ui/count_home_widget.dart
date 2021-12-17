@@ -4,6 +4,7 @@ import 'package:flutter_provider_sample/src/provider/count_provider.dart';
 import 'package:provider/provider.dart';
 
 class CountHomeWidget extends StatelessWidget {
+  // ignore: prefer_const_constructors_in_immutables
   CountHomeWidget({Key? key}) : super(key: key);
 
   late final CountProvider _countProvider;
